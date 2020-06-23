@@ -38,27 +38,31 @@ $timeBlock.each(function () {
         $(this).addClass("future");
         $(this).removeClass("past")
     }
+
+    //load any saved user entries to browser upon reload
+
+    let value = localStorage.getItem($(this).attr("id"));
+    if (value !== null) $(this).val(value);
+
 })
 
 
-// save user entry to local storage   Use set and get in the same loop
+// save user entry to local storage   
 //
 
 $saveButtons.on("click", function () {
     event.preventDefault();
 
 
-    $timeBlock.each(function () {
-        let id = $(this).attr("#");
+    $($timeBlock).each(function () {
+        let id = $(this).attr("id");
         let value = $(this).val();
         localStorage.setItem(id, value);
-        value = localStorage.getItem(id);
 
-        $(this).val(value);
-        $(this).append(value);
 
     });
-
     console.log(localStorage);
-
 });
+
+
+
